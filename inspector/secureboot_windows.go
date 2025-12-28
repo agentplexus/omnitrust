@@ -18,9 +18,14 @@ type SecureBootResult struct {
 	Details        string `json:"details,omitempty"`
 }
 
+// Windows error codes not exported by syscall package
+const (
+	ERROR_INVALID_FUNCTION = syscall.Errno(1)
+)
+
 var (
-	kernel32                       = syscall.NewLazyDLL("kernel32.dll")
-	procGetFirmwareEnvironmentVar  = kernel32.NewProc("GetFirmwareEnvironmentVariableW")
+	kernel32                      = syscall.NewLazyDLL("kernel32.dll")
+	procGetFirmwareEnvironmentVar = kernel32.NewProc("GetFirmwareEnvironmentVariableW")
 )
 
 // GetSecureBootStatus returns the Secure Boot status (Windows)
@@ -48,7 +53,7 @@ func GetSecureBootStatus() (*SecureBootResult, error) {
 
 	if ret == 0 {
 		// Function failed - might be in Legacy BIOS mode or no permission
-		if err == syscall.ERROR_INVALID_FUNCTION {
+		if err == ERROR_INVALID_FUNCTION {
 			result.Enabled = false
 			result.Mode = "legacy_bios"
 			result.SecureBootType = "none"
