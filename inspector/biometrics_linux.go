@@ -16,11 +16,11 @@ type BiometricCapabilities struct {
 	FaceIDEnrolled   bool   `json:"face_id_enrolled"`
 	BiometryType     string `json:"biometry_type"`
 	// Linux-specific fields
-	FprintdAvailable  bool   `json:"fprintd_available,omitempty"`
-	FprintdEnrolled   bool   `json:"fprintd_enrolled,omitempty"`
-	HowdyAvailable    bool   `json:"howdy_available,omitempty"`
-	HowdyConfigured   bool   `json:"howdy_configured,omitempty"`
-	Platform          string `json:"platform"`
+	FprintdAvailable bool   `json:"fprintd_available,omitempty"`
+	FprintdEnrolled  bool   `json:"fprintd_enrolled,omitempty"`
+	HowdyAvailable   bool   `json:"howdy_available,omitempty"`
+	HowdyConfigured  bool   `json:"howdy_configured,omitempty"`
+	Platform         string `json:"platform"`
 }
 
 // GetBiometricCapabilities returns biometric capabilities (Linux)
