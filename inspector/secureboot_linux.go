@@ -129,7 +129,7 @@ func FormatSecureBootTable(result *SecureBootResult) string {
 	sb.WriteString("\n")
 
 	// Mode
-	modeDisplay := result.Mode
+	var modeDisplay string
 	switch result.Mode {
 	case "enabled":
 		modeDisplay = Success("Enabled")

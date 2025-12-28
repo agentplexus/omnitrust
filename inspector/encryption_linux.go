@@ -51,6 +51,7 @@ func GetEncryptionStatus() (*EncryptionResult, error) {
 			dmPath := filepath.Join("/sys/block", "dm-*", "dm/name")
 
 			// Use dmsetup to check if it's a crypt target
+			// #nosec G204 -- entry.Name() comes from trusted /dev/mapper directory listing
 			out, err := exec.Command("dmsetup", "table", entry.Name()).Output()
 			if err == nil && strings.Contains(string(out), "crypt") {
 				vol := EncryptedVolume{
@@ -196,7 +197,7 @@ func FormatEncryptionTable(result *EncryptionResult) string {
 	sb.WriteString("\n")
 
 	// Status
-	statusDisplay := result.Status
+	var statusDisplay string
 	switch result.Status {
 	case "enabled":
 		statusDisplay = Success("Enabled")

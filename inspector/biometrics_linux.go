@@ -36,6 +36,7 @@ func GetBiometricCapabilities() (*BiometricCapabilities, error) {
 		result.TouchIDAvailable = true
 
 		// Check if fingerprints are enrolled
+		// #nosec G204 -- USER env var is trusted system input for current user
 		out, err := exec.Command("fprintd-list", os.Getenv("USER")).Output()
 		if err == nil && strings.Contains(string(out), "fingerprint") {
 			result.FprintdEnrolled = true
