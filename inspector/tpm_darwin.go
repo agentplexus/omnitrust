@@ -89,14 +89,14 @@ import (
 
 // TPMResult contains TPM/Secure Enclave status information
 type TPMResult struct {
-	Present           bool     `json:"present"`
-	Enabled           bool     `json:"enabled"`
-	Version           string   `json:"version"`
-	Manufacturer      string   `json:"manufacturer"`
-	Type              string   `json:"type"`
-	Platform          string   `json:"platform"`
-	Capabilities      []string `json:"capabilities"`
-	HardwareKeySupport bool    `json:"hardware_key_support"`
+	Present            bool     `json:"present"`
+	Enabled            bool     `json:"enabled"`
+	Version            string   `json:"version"`
+	Manufacturer       string   `json:"manufacturer"`
+	Type               string   `json:"type"`
+	Platform           string   `json:"platform"`
+	Capabilities       []string `json:"capabilities"`
+	HardwareKeySupport bool     `json:"hardware_key_support"`
 }
 
 // GetTPMStatus returns the TPM/Secure Enclave status (macOS)
@@ -129,13 +129,13 @@ func GetTPMStatus() (*TPMResult, error) {
 	}
 
 	return &TPMResult{
-		Present:           seAvailable,
-		Enabled:           seAvailable,
-		Version:           version,
-		Manufacturer:      "Apple",
-		Type:              tpmType,
-		Platform:          platform,
-		Capabilities:      capabilities,
+		Present:            seAvailable,
+		Enabled:            seAvailable,
+		Version:            version,
+		Manufacturer:       "Apple",
+		Type:               tpmType,
+		Platform:           platform,
+		Capabilities:       capabilities,
 		HardwareKeySupport: seAvailable,
 	}, nil
 }

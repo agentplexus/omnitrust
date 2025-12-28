@@ -66,14 +66,14 @@ func GetEncryptionStatus() (*EncryptionResult, error) {
 	}
 
 	// Get list of encrypted volumes using diskutil
-	volumes, _ := getEncryptedVolumes()
+	volumes := getEncryptedVolumes()
 	result.EncryptedVolumes = volumes
 
 	return result, nil
 }
 
 // getEncryptedVolumes returns a list of APFS encrypted volumes
-func getEncryptedVolumes() ([]EncryptedVolume, error) {
+func getEncryptedVolumes() []EncryptedVolume {
 	var volumes []EncryptedVolume
 
 	// Use diskutil to list APFS containers and check encryption
@@ -99,7 +99,7 @@ func getEncryptedVolumes() ([]EncryptedVolume, error) {
 			}
 			volumes = append(volumes, vol)
 		}
-		return volumes, nil
+		return volumes
 	}
 
 	// Parse diskutil output to find encrypted volumes
@@ -139,7 +139,7 @@ func getEncryptedVolumes() ([]EncryptedVolume, error) {
 		}
 	}
 
-	return volumes, nil
+	return volumes
 }
 
 // FormatEncryptionTable formats encryption status as a colored table

@@ -10,193 +10,193 @@ import (
 
 // Tool argument types - System metrics
 type GetCPUUsageArgs struct {
-	Format string `json:"format,omitempty" mcp:"Output format: 'json' (default) or 'table'"`
+	Format string `json:"format,omitempty" jsonschema:"description=Output format: 'json' (default) or 'table'"`
 }
 
 type GetMemoryArgs struct {
-	Format string `json:"format,omitempty" mcp:"Output format: 'json' (default) or 'table'"`
+	Format string `json:"format,omitempty" jsonschema:"description=Output format: 'json' (default) or 'table'"`
 }
 
 type ListProcessesArgs struct {
-	Limit  int    `json:"limit,omitempty" mcp:"Maximum number of processes to return (0 for all)"`
-	Format string `json:"format,omitempty" mcp:"Output format: 'json' (default) or 'table'"`
+	Limit  int    `json:"limit,omitempty" jsonschema:"description=Maximum number of processes to return (0 for all)"`
+	Format string `json:"format,omitempty" jsonschema:"description=Output format: 'json' (default) or 'table'"`
 }
 
 // Tool argument types - Security tools
 type GetPlatformSecurityChipArgs struct {
-	Format string `json:"format,omitempty" mcp:"Output format: 'json' (default) or 'table'"`
+	Format string `json:"format,omitempty" jsonschema:"description=Output format: 'json' (default) or 'table'"`
 }
 
 type GetSecureBootStatusArgs struct {
-	Format string `json:"format,omitempty" mcp:"Output format: 'json' (default) or 'table'"`
+	Format string `json:"format,omitempty" jsonschema:"description=Output format: 'json' (default) or 'table'"`
 }
 
 type GetEncryptionStatusArgs struct {
-	Format string `json:"format,omitempty" mcp:"Output format: 'json' (default) or 'table'"`
+	Format string `json:"format,omitempty" jsonschema:"description=Output format: 'json' (default) or 'table'"`
 }
 
 type GetBiometricCapabilitiesArgs struct {
-	Format string `json:"format,omitempty" mcp:"Output format: 'json' (default) or 'table'"`
+	Format string `json:"format,omitempty" jsonschema:"description=Output format: 'json' (default) or 'table'"`
 }
 
 type GetSecuritySummaryArgs struct {
-	Format string `json:"format,omitempty" mcp:"Output format: 'json' (default) or 'table'"`
+	Format string `json:"format,omitempty" jsonschema:"description=Output format: 'json' (default) or 'table'"`
 }
 
 // System metric handlers
 
-func handleGetCPUUsage(ctx context.Context, ss *mcp.ServerSession, params *mcp.CallToolParamsFor[GetCPUUsageArgs]) (*mcp.CallToolResultFor[struct{}], error) {
+func handleGetCPUUsage(ctx context.Context, req *mcp.CallToolRequest, args GetCPUUsageArgs) (*mcp.CallToolResult, any, error) {
 	result, err := inspector.GetCPUUsage(ctx)
 	if err != nil {
-		return &mcp.CallToolResultFor[struct{}]{
+		return &mcp.CallToolResult{
 			Content: []mcp.Content{
 				&mcp.TextContent{Text: err.Error()},
 			},
 			IsError: true,
-		}, nil
+		}, nil, nil
 	}
 
-	output := inspector.FormatCPUUsage(result, params.Arguments.Format)
-	return &mcp.CallToolResultFor[struct{}]{
+	output := inspector.FormatCPUUsage(result, args.Format)
+	return &mcp.CallToolResult{
 		Content: []mcp.Content{
 			&mcp.TextContent{Text: output},
 		},
-	}, nil
+	}, nil, nil
 }
 
-func handleGetMemory(ctx context.Context, ss *mcp.ServerSession, params *mcp.CallToolParamsFor[GetMemoryArgs]) (*mcp.CallToolResultFor[struct{}], error) {
+func handleGetMemory(ctx context.Context, req *mcp.CallToolRequest, args GetMemoryArgs) (*mcp.CallToolResult, any, error) {
 	result, err := inspector.GetMemory(ctx)
 	if err != nil {
-		return &mcp.CallToolResultFor[struct{}]{
+		return &mcp.CallToolResult{
 			Content: []mcp.Content{
 				&mcp.TextContent{Text: err.Error()},
 			},
 			IsError: true,
-		}, nil
+		}, nil, nil
 	}
 
-	output := inspector.FormatMemory(result, params.Arguments.Format)
-	return &mcp.CallToolResultFor[struct{}]{
+	output := inspector.FormatMemory(result, args.Format)
+	return &mcp.CallToolResult{
 		Content: []mcp.Content{
 			&mcp.TextContent{Text: output},
 		},
-	}, nil
+	}, nil, nil
 }
 
-func handleListProcesses(ctx context.Context, ss *mcp.ServerSession, params *mcp.CallToolParamsFor[ListProcessesArgs]) (*mcp.CallToolResultFor[struct{}], error) {
-	result, err := inspector.ListProcesses(ctx, params.Arguments.Limit)
+func handleListProcesses(ctx context.Context, req *mcp.CallToolRequest, args ListProcessesArgs) (*mcp.CallToolResult, any, error) {
+	result, err := inspector.ListProcesses(ctx, args.Limit)
 	if err != nil {
-		return &mcp.CallToolResultFor[struct{}]{
+		return &mcp.CallToolResult{
 			Content: []mcp.Content{
 				&mcp.TextContent{Text: err.Error()},
 			},
 			IsError: true,
-		}, nil
+		}, nil, nil
 	}
 
-	output := inspector.FormatProcessList(result, params.Arguments.Format)
-	return &mcp.CallToolResultFor[struct{}]{
+	output := inspector.FormatProcessList(result, args.Format)
+	return &mcp.CallToolResult{
 		Content: []mcp.Content{
 			&mcp.TextContent{Text: output},
 		},
-	}, nil
+	}, nil, nil
 }
 
 // Security tool handlers
 
-func handleGetPlatformSecurityChip(ctx context.Context, ss *mcp.ServerSession, params *mcp.CallToolParamsFor[GetPlatformSecurityChipArgs]) (*mcp.CallToolResultFor[struct{}], error) {
+func handleGetPlatformSecurityChip(_ context.Context, req *mcp.CallToolRequest, args GetPlatformSecurityChipArgs) (*mcp.CallToolResult, any, error) {
 	result, err := inspector.GetTPMStatus()
 	if err != nil {
-		return &mcp.CallToolResultFor[struct{}]{
+		return &mcp.CallToolResult{
 			Content: []mcp.Content{
 				&mcp.TextContent{Text: err.Error()},
 			},
 			IsError: true,
-		}, nil
+		}, nil, nil
 	}
 
-	output := inspector.FormatTPM(result, params.Arguments.Format)
-	return &mcp.CallToolResultFor[struct{}]{
+	output := inspector.FormatTPM(result, args.Format)
+	return &mcp.CallToolResult{
 		Content: []mcp.Content{
 			&mcp.TextContent{Text: output},
 		},
-	}, nil
+	}, nil, nil
 }
 
-func handleGetSecureBootStatus(ctx context.Context, ss *mcp.ServerSession, params *mcp.CallToolParamsFor[GetSecureBootStatusArgs]) (*mcp.CallToolResultFor[struct{}], error) {
+func handleGetSecureBootStatus(_ context.Context, req *mcp.CallToolRequest, args GetSecureBootStatusArgs) (*mcp.CallToolResult, any, error) {
 	result, err := inspector.GetSecureBootStatus()
 	if err != nil {
-		return &mcp.CallToolResultFor[struct{}]{
+		return &mcp.CallToolResult{
 			Content: []mcp.Content{
 				&mcp.TextContent{Text: err.Error()},
 			},
 			IsError: true,
-		}, nil
+		}, nil, nil
 	}
 
-	output := inspector.FormatSecureBoot(result, params.Arguments.Format)
-	return &mcp.CallToolResultFor[struct{}]{
+	output := inspector.FormatSecureBoot(result, args.Format)
+	return &mcp.CallToolResult{
 		Content: []mcp.Content{
 			&mcp.TextContent{Text: output},
 		},
-	}, nil
+	}, nil, nil
 }
 
-func handleGetEncryptionStatus(ctx context.Context, ss *mcp.ServerSession, params *mcp.CallToolParamsFor[GetEncryptionStatusArgs]) (*mcp.CallToolResultFor[struct{}], error) {
+func handleGetEncryptionStatus(_ context.Context, req *mcp.CallToolRequest, args GetEncryptionStatusArgs) (*mcp.CallToolResult, any, error) {
 	result, err := inspector.GetEncryptionStatus()
 	if err != nil {
-		return &mcp.CallToolResultFor[struct{}]{
+		return &mcp.CallToolResult{
 			Content: []mcp.Content{
 				&mcp.TextContent{Text: err.Error()},
 			},
 			IsError: true,
-		}, nil
+		}, nil, nil
 	}
 
-	output := inspector.FormatEncryption(result, params.Arguments.Format)
-	return &mcp.CallToolResultFor[struct{}]{
+	output := inspector.FormatEncryption(result, args.Format)
+	return &mcp.CallToolResult{
 		Content: []mcp.Content{
 			&mcp.TextContent{Text: output},
 		},
-	}, nil
+	}, nil, nil
 }
 
-func handleGetBiometricCapabilities(ctx context.Context, ss *mcp.ServerSession, params *mcp.CallToolParamsFor[GetBiometricCapabilitiesArgs]) (*mcp.CallToolResultFor[struct{}], error) {
+func handleGetBiometricCapabilities(_ context.Context, req *mcp.CallToolRequest, args GetBiometricCapabilitiesArgs) (*mcp.CallToolResult, any, error) {
 	result, err := inspector.GetBiometricCapabilities()
 	if err != nil {
-		return &mcp.CallToolResultFor[struct{}]{
+		return &mcp.CallToolResult{
 			Content: []mcp.Content{
 				&mcp.TextContent{Text: err.Error()},
 			},
 			IsError: true,
-		}, nil
+		}, nil, nil
 	}
 
-	output := inspector.FormatBiometricCapabilities(result, params.Arguments.Format)
-	return &mcp.CallToolResultFor[struct{}]{
+	output := inspector.FormatBiometricCapabilities(result, args.Format)
+	return &mcp.CallToolResult{
 		Content: []mcp.Content{
 			&mcp.TextContent{Text: output},
 		},
-	}, nil
+	}, nil, nil
 }
 
-func handleGetSecuritySummary(ctx context.Context, ss *mcp.ServerSession, params *mcp.CallToolParamsFor[GetSecuritySummaryArgs]) (*mcp.CallToolResultFor[struct{}], error) {
+func handleGetSecuritySummary(_ context.Context, req *mcp.CallToolRequest, args GetSecuritySummaryArgs) (*mcp.CallToolResult, any, error) {
 	result, err := inspector.GetSecuritySummary()
 	if err != nil {
-		return &mcp.CallToolResultFor[struct{}]{
+		return &mcp.CallToolResult{
 			Content: []mcp.Content{
 				&mcp.TextContent{Text: err.Error()},
 			},
 			IsError: true,
-		}, nil
+		}, nil, nil
 	}
 
-	output := inspector.FormatSecuritySummary(result, params.Arguments.Format)
-	return &mcp.CallToolResultFor[struct{}]{
+	output := inspector.FormatSecuritySummary(result, args.Format)
+	return &mcp.CallToolResult{
 		Content: []mcp.Content{
 			&mcp.TextContent{Text: output},
 		},
-	}, nil
+	}, nil, nil
 }
 
 // NewMCPServer creates and configures a new MCP server
@@ -273,5 +273,5 @@ func NewMCPServer() *mcp.Server {
 // Run starts the MCP server on stdio
 func Run() error {
 	server := NewMCPServer()
-	return server.Run(context.Background(), mcp.NewStdioTransport())
+	return server.Run(context.Background(), &mcp.StdioTransport{})
 }

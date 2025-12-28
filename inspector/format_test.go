@@ -67,8 +67,8 @@ func TestVisibleLen(t *testing.T) {
 		{"ascii", "hello", 5},
 		{"with ANSI", "\033[31mhello\033[0m", 5},
 		{"unicode", "世界", 4}, // 2 wide chars
-		{"emoji", "👍", 2},     // emoji is 2 wide
-		{"mixed", "hi 👋", 5},  // 2 + 1 + 2
+		{"emoji", "👍", 2},    // emoji is 2 wide
+		{"mixed", "hi 👋", 5}, // 2 + 1 + 2
 	}
 
 	for _, tt := range tests {

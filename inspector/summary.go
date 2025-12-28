@@ -8,14 +8,14 @@ import (
 
 // SecuritySummary contains a unified security posture overview
 type SecuritySummary struct {
-	Platform       string         `json:"platform"`
-	OverallScore   int            `json:"overall_score"`
-	OverallStatus  string         `json:"overall_status"`
-	TPM            *TPMSummary    `json:"tpm"`
-	SecureBoot     *BootSummary   `json:"secure_boot"`
-	Encryption     *EncSummary    `json:"encryption"`
-	Biometrics     *BioSummary    `json:"biometrics"`
-	Recommendations []string      `json:"recommendations,omitempty"`
+	Platform        string       `json:"platform"`
+	OverallScore    int          `json:"overall_score"`
+	OverallStatus   string       `json:"overall_status"`
+	TPM             *TPMSummary  `json:"tpm"`
+	SecureBoot      *BootSummary `json:"secure_boot"`
+	Encryption      *EncSummary  `json:"encryption"`
+	Biometrics      *BioSummary  `json:"biometrics"`
+	Recommendations []string     `json:"recommendations,omitempty"`
 }
 
 // TPMSummary contains TPM summary info
