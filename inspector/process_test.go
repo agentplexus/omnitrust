@@ -32,8 +32,9 @@ func TestListProcesses(t *testing.T) {
 
 	// Verify process structure
 	for i, proc := range result.Processes {
-		if proc.PID <= 0 {
-			t.Errorf("Process[%d].PID = %d, want > 0", i, proc.PID)
+		// PID 0 is valid on Windows (System Idle Process)
+		if proc.PID < 0 {
+			t.Errorf("Process[%d].PID = %d, want >= 0", i, proc.PID)
 		}
 		// Name can be empty for some system processes, so we don't check it
 		// CPU and memory percentages should be non-negative

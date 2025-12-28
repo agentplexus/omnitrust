@@ -5,4 +5,5 @@ _*
 coverage.txt
 debug.test
 main
-main.zip/posture
+main.zip
+/posture
