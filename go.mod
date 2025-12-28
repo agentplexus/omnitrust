@@ -1,4 +1,4 @@
-module github.com/agentplexus/omnitrust
+module github.com/agentplexus/posture
 
 go 1.24.0
 

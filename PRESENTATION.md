@@ -46,7 +46,7 @@ style: |
 
 <!-- _paginate: false -->
 
-# OmniTrust
+# Posture
 
 ## Cross-Platform Security Posture Assessment
 
@@ -54,7 +54,7 @@ CLI | MCP Server | Go Module
 
 ---
 
-# What is OmniTrust?
+# What is Posture?
 
 A **unified security inspection tool** for macOS, Windows, and Linux.
 
@@ -70,7 +70,7 @@ A **unified security inspection tool** for macOS, Windows, and Linux.
 
 ---
 
-# Three Ways to Use OmniTrust
+# Three Ways to Use Posture
 
 | Method | Use Case | Best For |
 |--------|----------|----------|
@@ -86,18 +86,18 @@ A **unified security inspection tool** for macOS, Windows, and Linux.
 
 ```bash
 # Security summary with score
-omnitrust summary -f table
+posture summary -f table
 
 # Individual security checks
-omnitrust security-chip -f table
-omnitrust secureboot -f table
-omnitrust encryption -f table
-omnitrust biometrics -f table
+posture security-chip -f table
+posture secureboot -f table
+posture encryption -f table
+posture biometrics -f table
 
 # System metrics
-omnitrust cpu -f table
-omnitrust memory -f table
-omnitrust processes -n 10 -f table
+posture cpu -f table
+posture memory -f table
+posture processes -n 10 -f table
 ```
 
 ---
@@ -133,15 +133,15 @@ Configure Claude Desktop:
 ```json
 {
   "mcpServers": {
-    "omnitrust": {
-      "command": "/path/to/omnitrust",
+    "posture": {
+      "command": "/path/to/posture",
       "args": ["serve"]
     }
   }
 }
 ```
 
-Start: `omnitrust serve`
+Start: `posture serve`
 
 ---
 
@@ -165,13 +165,13 @@ Start: `omnitrust serve`
 ### Installation
 
 ```bash
-go get github.com/agentplexus/omnitrust
+go get github.com/agentplexus/posture
 ```
 
 ### Import
 
 ```go
-import "github.com/agentplexus/omnitrust/inspector"
+import "github.com/agentplexus/posture/inspector"
 ```
 
 ---
@@ -183,7 +183,7 @@ package main
 
 import (
     "fmt"
-    "github.com/agentplexus/omnitrust/inspector"
+    "github.com/agentplexus/posture/inspector"
 )
 
 func main() {
@@ -312,14 +312,14 @@ Each feature contributes **25 points** to the total score:
 
 # Security by Design
 
-### What OmniTrust Does
+### What Posture Does
 
 - Read-only system inspection
 - Hardware capability verification
 - Security posture assessment
 - Process enumeration
 
-### What OmniTrust Does NOT Do
+### What Posture Does NOT Do
 
 - Access keychain or secrets
 - Extract cryptographic keys
@@ -352,20 +352,20 @@ Each feature contributes **25 points** to the total score:
 
 ### Pre-built Binaries
 
-[GitHub Releases](https://github.com/agentplexus/omnitrust/releases)
+[GitHub Releases](https://github.com/agentplexus/posture/releases)
 
 ### Build from Source
 
 ```bash
-git clone https://github.com/agentplexus/omnitrust.git
-cd omnitrust
-go build -o omnitrust ./cmd/omnitrust/
+git clone https://github.com/agentplexus/posture.git
+cd posture
+go build -o posture ./cmd/posture/
 ```
 
 ### Go Module
 
 ```bash
-go get github.com/agentplexus/omnitrust
+go get github.com/agentplexus/posture
 ```
 
 ---
@@ -374,15 +374,15 @@ go get github.com/agentplexus/omnitrust
 
 ```bash
 # macOS (Apple Silicon & Intel)
-GOOS=darwin GOARCH=arm64 go build -o omnitrust-darwin-arm64 ./cmd/omnitrust/
-GOOS=darwin GOARCH=amd64 go build -o omnitrust-darwin-amd64 ./cmd/omnitrust/
+GOOS=darwin GOARCH=arm64 go build -o posture-darwin-arm64 ./cmd/posture/
+GOOS=darwin GOARCH=amd64 go build -o posture-darwin-amd64 ./cmd/posture/
 
 # Linux
-GOOS=linux GOARCH=amd64 go build -o omnitrust-linux-amd64 ./cmd/omnitrust/
-GOOS=linux GOARCH=arm64 go build -o omnitrust-linux-arm64 ./cmd/omnitrust/
+GOOS=linux GOARCH=amd64 go build -o posture-linux-amd64 ./cmd/posture/
+GOOS=linux GOARCH=arm64 go build -o posture-linux-arm64 ./cmd/posture/
 
 # Windows
-GOOS=windows GOARCH=amd64 go build -o omnitrust-windows.exe ./cmd/omnitrust/
+GOOS=windows GOARCH=amd64 go build -o posture-windows.exe ./cmd/posture/
 ```
 
 *Note: macOS Secure Enclave requires native compilation (cgo)*
@@ -437,7 +437,7 @@ GOOS=windows GOARCH=amd64 go build -o omnitrust-windows.exe ./cmd/omnitrust/
 
 ```bash
 # Check security posture
-$ omnitrust summary -f table
+$ posture summary -f table
 
 Security Score: 75/100
 Status: Good
@@ -486,21 +486,21 @@ for _, rec := range summary.Recommendations {
 
 # Key Takeaways
 
-1. **Three interfaces, one tool** - CLI, MCP, and Go Module
+**Three interfaces, one tool** - CLI, MCP, and Go Module
 
-2. **Cross-platform** - macOS, Windows, Linux with native APIs
+**Cross-platform** - macOS, Windows, Linux with native APIs
 
-3. **Security-focused** - Read-only, no secrets exposed
+**Security-focused** - Read-only, no secrets exposed
 
-4. **AI-ready** - MCP integration for Claude Desktop
+**AI-ready** - MCP integration for Claude Desktop
 
-5. **Developer-friendly** - Go module for programmatic access
+**Developer-friendly** - Go module for programmatic access
 
 ---
 
 # Resources
 
-- **GitHub**: [github.com/agentplexus/omnitrust](https://github.com/agentplexus/omnitrust)
+- **GitHub**: [github.com/agentplexus/posture](https://github.com/agentplexus/posture)
 - **MCP Specification**: [modelcontextprotocol.io](https://modelcontextprotocol.io)
 - **MCP Go SDK**: [github.com/modelcontextprotocol/go-sdk](https://github.com/modelcontextprotocol/go-sdk)
 - **Claude Desktop**: [claude.ai/download](https://claude.ai/download)
@@ -511,23 +511,23 @@ for _, rec := range summary.Recommendations {
 
 ```bash
 # Install
-go install github.com/agentplexus/omnitrust/cmd/omnitrust@latest
+go install github.com/agentplexus/posture/cmd/posture@latest
 
 # Check your security posture
-omnitrust summary -f table
+posture summary -f table
 
 # Start MCP server for Claude
-omnitrust serve
+posture serve
 ```
 
 ---
 
 # Thank You
 
-## OmniTrust
+## Posture
 
 **Cross-Platform Security Posture Assessment**
 
 CLI | MCP Server | Go Module
 
-[github.com/agentplexus/omnitrust](https://github.com/agentplexus/omnitrust)
+[github.com/agentplexus/posture](https://github.com/agentplexus/posture)

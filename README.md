@@ -1,6 +1,6 @@
-# OmniTrust
+# Posture
 
-A cross-platform security posture assessment tool with Model Context Protocol (MCP) server support. OmniTrust provides unified security inspection across macOS, Windows, and Linux, enabling AI assistants to query hardware security modules, boot security, disk encryption, and biometric capabilities.
+A cross-platform security posture assessment tool with Model Context Protocol (MCP) server support. Posture provides unified security inspection across macOS, Windows, and Linux, enabling AI assistants to query hardware security modules, boot security, disk encryption, and biometric capabilities.
 
 ## Features
 
@@ -24,21 +24,21 @@ A cross-platform security posture assessment tool with Model Context Protocol (M
 
 ### Pre-built Binary
 
-Download the latest release for your platform from the [Releases](https://github.com/agentplexus/omnitrust/releases) page.
+Download the latest release for your platform from the [Releases](https://github.com/agentplexus/posture/releases) page.
 
 ### Build from Source
 
 Requires Go 1.23 or later.
 
 ```bash
-git clone https://github.com/agentplexus/omnitrust.git
-cd omnitrust
-go build -o omnitrust ./cmd/omnitrust/
+git clone https://github.com/agentplexus/posture.git
+cd posture
+go build -o posture ./cmd/posture/
 ```
 
 ## Usage
 
-OmniTrust can be used in three ways:
+Posture can be used in three ways:
 
 1. **CLI** - Command-line tool for interactive use
 2. **MCP Server** - Model Context Protocol server for AI assistants
@@ -48,24 +48,24 @@ OmniTrust can be used in three ways:
 
 ```bash
 # Show security summary with score
-omnitrust summary -f table
+posture summary -f table
 
 # Check platform security chip (Secure Enclave / TPM) status
-omnitrust security-chip -f table
+posture security-chip -f table
 
 # Check Secure Boot status
-omnitrust secureboot -f table
+posture secureboot -f table
 
 # Check disk encryption status
-omnitrust encryption -f table
+posture encryption -f table
 
 # Check biometric capabilities
-omnitrust biometrics -f table
+posture biometrics -f table
 
 # System metrics
-omnitrust cpu -f table
-omnitrust memory -f table
-omnitrust processes -n 10 -f table
+posture cpu -f table
+posture memory -f table
+posture processes -n 10 -f table
 ```
 
 ## MCP Server Usage
@@ -80,8 +80,8 @@ Add to your Claude Desktop configuration file:
 ```json
 {
   "mcpServers": {
-    "omnitrust": {
-      "command": "/path/to/omnitrust",
+    "posture": {
+      "command": "/path/to/posture",
       "args": ["serve"]
     }
   }
@@ -108,7 +108,7 @@ Import the `inspector` package for programmatic access to all security and syste
 ### Installation
 
 ```bash
-go get github.com/agentplexus/omnitrust
+go get github.com/agentplexus/posture
 ```
 
 ### Example: Security Summary
@@ -122,7 +122,7 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/agentplexus/omnitrust/inspector"
+	"github.com/agentplexus/posture/inspector"
 )
 
 func main() {
@@ -154,7 +154,7 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/agentplexus/omnitrust/inspector"
+	"github.com/agentplexus/posture/inspector"
 )
 
 func main() {
@@ -305,7 +305,7 @@ Security Features:
                               │ stdio (JSON-RPC)
                               ▼
 ┌─────────────────────────────────────────────────────────────┐
-│                       OmniTrust                             │
+│                       Posture                             │
 │  ┌──────────────────┐  ┌──────────────────────────────────┐ │
 │  │   MCP Server     │  │         Security Tools           │ │
 │  │                  │  │  🛡️  get_platform_security_chip  │ │
@@ -347,15 +347,15 @@ This tool is designed with security in mind:
 
 ```bash
 # macOS (includes Secure Enclave)
-GOOS=darwin GOARCH=arm64 go build -o omnitrust-darwin-arm64 ./cmd/omnitrust/
-GOOS=darwin GOARCH=amd64 go build -o omnitrust-darwin-amd64 ./cmd/omnitrust/
+GOOS=darwin GOARCH=arm64 go build -o posture-darwin-arm64 ./cmd/posture/
+GOOS=darwin GOARCH=amd64 go build -o posture-darwin-amd64 ./cmd/posture/
 
 # Linux (includes TPM, LUKS)
-GOOS=linux GOARCH=amd64 go build -o omnitrust-linux-amd64 ./cmd/omnitrust/
-GOOS=linux GOARCH=arm64 go build -o omnitrust-linux-arm64 ./cmd/omnitrust/
+GOOS=linux GOARCH=amd64 go build -o posture-linux-amd64 ./cmd/posture/
+GOOS=linux GOARCH=arm64 go build -o posture-linux-arm64 ./cmd/posture/
 
 # Windows (includes TPM, BitLocker)
-GOOS=windows GOARCH=amd64 go build -o omnitrust-windows-amd64.exe ./cmd/omnitrust/
+GOOS=windows GOARCH=amd64 go build -o posture-windows-amd64.exe ./cmd/posture/
 ```
 
 Note: Cross-compiling for macOS from other platforms will not include Secure Enclave support due to cgo dependencies.

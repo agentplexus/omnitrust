@@ -5,7 +5,7 @@ import (
 
 	"github.com/modelcontextprotocol/go-sdk/mcp"
 
-	"github.com/agentplexus/omnitrust/inspector"
+	"github.com/agentplexus/posture/inspector"
 )
 
 // Tool argument types - System metrics
@@ -202,7 +202,7 @@ func handleGetSecuritySummary(_ context.Context, req *mcp.CallToolRequest, args 
 // NewMCPServer creates and configures a new MCP server
 func NewMCPServer() *mcp.Server {
 	server := mcp.NewServer(&mcp.Implementation{
-		Name:    "omnitrust",
+		Name:    "posture",
 		Version: "1.0.0",
 	}, nil)
 

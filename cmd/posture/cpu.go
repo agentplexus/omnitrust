@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/agentplexus/omnitrust/inspector"
+	"github.com/agentplexus/posture/inspector"
 	"github.com/spf13/cobra"
 )
 
