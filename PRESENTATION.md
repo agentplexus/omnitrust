@@ -46,7 +46,7 @@ style: |
 
 <!-- _paginate: false -->
 
-# 🛡️ Posture
+# Posture 🛡️
 
 ## Cross-Platform Security Posture Assessment
 
@@ -54,7 +54,7 @@ style: |
 
 ---
 
-# 🔍 What is Posture?
+# What is Posture? 🔍
 
 A **unified security inspection tool** for macOS, Windows, and Linux.
 
@@ -70,7 +70,7 @@ A **unified security inspection tool** for macOS, Windows, and Linux.
 
 ---
 
-# 🔀 Three Ways to Use Posture
+# Three Ways to Use Posture 🔀
 
 | Method | Use Case | Best For |
 |--------|----------|----------|
@@ -82,7 +82,7 @@ A **unified security inspection tool** for macOS, Windows, and Linux.
 
 ---
 
-# 💻 CLI Usage
+# CLI Usage 💻
 
 ```bash
 # Security summary with score
@@ -102,7 +102,7 @@ posture processes -n 10 -f table
 
 ---
 
-# 📊 CLI Output: Security Summary
+# CLI Output: Security Summary 📊
 
 ```
 Security Score: 75/100
@@ -124,7 +124,7 @@ Recommendations:
 
 ---
 
-# 🤖 MCP Server for AI Assistants
+# MCP Server for AI Assistants 🤖
 
 Configure Claude Desktop:
 
@@ -145,7 +145,7 @@ Start: `posture serve`
 
 ---
 
-# 🛠️ MCP Tools
+# MCP Tools 🛠️
 
 | Tool | Description |
 |------|-------------|
@@ -160,7 +160,7 @@ Start: `posture serve`
 
 ---
 
-# 📦 Go Module Usage
+# Go Module Usage 📦
 
 ### 📥 Installation
 
@@ -176,7 +176,7 @@ import "github.com/agentplexus/posture/inspector"
 
 ---
 
-# 📦 Go Module: Security Summary
+# Go Module: Security Summary 📦
 
 ```go
 package main
@@ -202,7 +202,7 @@ func main() {
 
 ---
 
-# 📦 Go Module: Individual Checks
+# Go Module: Individual Checks 📦
 
 ```go
 // Platform Security Chip (Secure Enclave / TPM)
@@ -227,7 +227,7 @@ fmt.Printf("Memory: %.1f%% used\n", mem.UsedPercent)
 
 ---
 
-# 📦 Go Module: Available Functions
+# Go Module: Available Functions 📦
 
 | Function | Description |
 |----------|-------------|
@@ -244,7 +244,7 @@ Each has a corresponding `IsXXXSupported()` function.
 
 ---
 
-# 🖥️ Platform Support
+# Platform Support 🖥️
 
 | Feature | macOS | Windows | Linux |
 |---------|-------|---------|-------|
@@ -256,7 +256,7 @@ Each has a corresponding `IsXXXSupported()` function.
 
 ---
 
-# 🏗️ Architecture
+# Architecture 🏗️
 
 ```
 +------------------+     +---------------------------+
@@ -275,7 +275,7 @@ Each has a corresponding `IsXXXSupported()` function.
 
 ---
 
-# 📊 Security Score Calculation
+# Security Score Calculation 📊
 
 Each feature contributes **25 points** to the total score:
 
@@ -289,7 +289,7 @@ Each feature contributes **25 points** to the total score:
 
 ---
 
-# 📋 JSON Output
+# JSON Output 📋
 
 ```json
 {
@@ -310,7 +310,7 @@ Each feature contributes **25 points** to the total score:
 
 ---
 
-# 🔐 Security by Design
+# Security by Design 🔐
 
 ### ✅ What Posture Does
 
@@ -329,7 +329,7 @@ Each feature contributes **25 points** to the total score:
 
 ---
 
-# 🎨 Rich Terminal Output
+# Rich Terminal Output 🎨
 
 | Feature | Description |
 |---------|-------------|
@@ -348,7 +348,7 @@ Each feature contributes **25 points** to the total score:
 
 ---
 
-# 📥 Installation
+# Installation 📥
 
 ### Pre-built Binaries
 
@@ -370,7 +370,7 @@ go get github.com/agentplexus/posture
 
 ---
 
-# 🔧 Cross-Compilation
+# Cross-Compilation 🔧
 
 ```bash
 # macOS (Apple Silicon & Intel)
@@ -389,7 +389,7 @@ GOOS=windows GOARCH=amd64 go build -o posture-windows.exe ./cmd/posture/
 
 ---
 
-# 📦 Dependencies
+# Dependencies 📦
 
 | Package | Purpose |
 |---------|---------|
@@ -400,7 +400,7 @@ GOOS=windows GOARCH=amd64 go build -o posture-windows.exe ./cmd/posture/
 
 ---
 
-# 💼 Use Cases
+# Use Cases 💼
 
 <div class="columns">
 <div>
@@ -433,7 +433,7 @@ GOOS=windows GOARCH=amd64 go build -o posture-windows.exe ./cmd/posture/
 
 ---
 
-# 🎬 Demo: CLI
+# Demo: CLI 🎬
 
 ```bash
 # Check security posture
@@ -454,7 +454,7 @@ Recommendations:
 
 ---
 
-# 🎬 Demo: MCP with Claude
+# Demo: MCP with Claude 🎬
 
 > "What's the security status of this machine?"
 
@@ -466,7 +466,7 @@ Claude calls `get_security_summary` and responds:
 
 ---
 
-# 🎬 Demo: Go Module
+# Demo: Go Module 🎬
 
 ```go
 summary, _ := inspector.GetSecuritySummary()
@@ -484,7 +484,7 @@ for _, rec := range summary.Recommendations {
 
 ---
 
-# 🎯 Key Takeaways
+# Key Takeaways 🎯
 
 🔀 **Three interfaces, one tool** - CLI, MCP, and Go Module
 
@@ -498,7 +498,7 @@ for _, rec := range summary.Recommendations {
 
 ---
 
-# 📚 Resources
+# Resources 📚
 
 - **GitHub**: [github.com/agentplexus/posture](https://github.com/agentplexus/posture)
 - **MCP Specification**: [modelcontextprotocol.io](https://modelcontextprotocol.io)
@@ -507,7 +507,7 @@ for _, rec := range summary.Recommendations {
 
 ---
 
-# 🚀 Get Started
+# Get Started 🚀
 
 ```bash
 # Install
@@ -522,9 +522,9 @@ posture serve
 
 ---
 
-# 🙏 Thank You
+# Thank You 🙏
 
-## 🛡️ Posture
+## Posture 🛡️
 
 **Cross-Platform Security Posture Assessment**
 
