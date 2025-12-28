@@ -10,37 +10,37 @@ import (
 
 // Tool argument types - System metrics
 type GetCPUUsageArgs struct {
-	Format string `json:"format,omitempty" jsonschema:"description=Output format: 'json' (default) or 'table'"`
+	Format string `json:"format,omitempty" jsonschema:"Output format: json (default) or table"`
 }
 
 type GetMemoryArgs struct {
-	Format string `json:"format,omitempty" jsonschema:"description=Output format: 'json' (default) or 'table'"`
+	Format string `json:"format,omitempty" jsonschema:"Output format: json (default) or table"`
 }
 
 type ListProcessesArgs struct {
-	Limit  int    `json:"limit,omitempty" jsonschema:"description=Maximum number of processes to return (0 for all)"`
-	Format string `json:"format,omitempty" jsonschema:"description=Output format: 'json' (default) or 'table'"`
+	Limit  int    `json:"limit,omitempty" jsonschema:"Maximum number of processes to return (0 for all)"`
+	Format string `json:"format,omitempty" jsonschema:"Output format: json (default) or table"`
 }
 
 // Tool argument types - Security tools
 type GetPlatformSecurityChipArgs struct {
-	Format string `json:"format,omitempty" jsonschema:"description=Output format: 'json' (default) or 'table'"`
+	Format string `json:"format,omitempty" jsonschema:"Output format: json (default) or table"`
 }
 
 type GetSecureBootStatusArgs struct {
-	Format string `json:"format,omitempty" jsonschema:"description=Output format: 'json' (default) or 'table'"`
+	Format string `json:"format,omitempty" jsonschema:"Output format: json (default) or table"`
 }
 
 type GetEncryptionStatusArgs struct {
-	Format string `json:"format,omitempty" jsonschema:"description=Output format: 'json' (default) or 'table'"`
+	Format string `json:"format,omitempty" jsonschema:"Output format: json (default) or table"`
 }
 
 type GetBiometricCapabilitiesArgs struct {
-	Format string `json:"format,omitempty" jsonschema:"description=Output format: 'json' (default) or 'table'"`
+	Format string `json:"format,omitempty" jsonschema:"Output format: json (default) or table"`
 }
 
 type GetSecuritySummaryArgs struct {
-	Format string `json:"format,omitempty" jsonschema:"description=Output format: 'json' (default) or 'table'"`
+	Format string `json:"format,omitempty" jsonschema:"Output format: json (default) or table"`
 }
 
 // System metric handlers
